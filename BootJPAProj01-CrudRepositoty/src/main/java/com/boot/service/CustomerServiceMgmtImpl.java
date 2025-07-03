@@ -30,4 +30,10 @@ public class CustomerServiceMgmtImpl implements ICustomerServiceMgmt {
  		return "Bulk of customers are registered with Id's : "+listOfIds;
 	}
 
+	@Override
+	public boolean isCustomerAvailable(Integer id) {
+		  boolean status = custRepo.existsById(id);
+		return status;
+	}
+
 }

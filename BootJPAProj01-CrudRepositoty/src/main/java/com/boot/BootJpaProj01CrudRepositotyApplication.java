@@ -28,6 +28,13 @@ public class BootJpaProj01CrudRepositotyApplication {
 				                           new Customer("Micle","Canada",12500.0f));
 		String customerGroup = custImpl.registerGroupOfCustomers(customers);
 		System.out.println(customerGroup);
+		
+		boolean isAvailable = custImpl.isCustomerAvailable(new Integer(202));
+		if(isAvailable) {
+			System.out.println("Customer Available");
+		}else {
+			System.out.println("Customer not Available");
+		}
 	}
 
 }
