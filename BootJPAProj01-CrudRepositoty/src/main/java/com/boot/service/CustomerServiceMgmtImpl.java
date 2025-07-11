@@ -36,4 +36,16 @@ public class CustomerServiceMgmtImpl implements ICustomerServiceMgmt {
 		return status;
 	}
 
+	@Override
+	public long getAllCustomerCount() {
+		 long count = custRepo.count();
+		return count;
+	}
+
+	@Override
+	public Iterable<Customer> getAllCustomer() {
+		Iterable<Customer> it = custRepo.findAll();
+		return it;
+	}
+
 }

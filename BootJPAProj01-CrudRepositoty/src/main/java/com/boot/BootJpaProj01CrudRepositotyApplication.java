@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.boot.entity.Customer;
-import com.boot.service.CustomerServiceMgmtImpl;
+import com.boot.service.ICustomerServiceMgmt;
 
 @SpringBootApplication
 public class BootJpaProj01CrudRepositotyApplication {
@@ -15,25 +15,36 @@ public class BootJpaProj01CrudRepositotyApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(BootJpaProj01CrudRepositotyApplication.class, args);
 		
-		CustomerServiceMgmtImpl custImpl = ctx.getBean(CustomerServiceMgmtImpl.class);
-		Customer cust = new Customer();
+		ICustomerServiceMgmt custService = ctx.getBean(ICustomerServiceMgmt.class);
+	 	Customer cust = new Customer();
 		cust.setCname("Jack");
 		cust.setCaddrs("UN");
 		cust.setBillAmt(75000.0f);
 		
-		String result = custImpl.registerCustomer(cust);
+		String result = custService.registerCustomer(cust);
 		System.out.println(result);
 		
 		List<Customer> customers = List.of(new Customer("Atlas","Germany",45450.0f),
 				                           new Customer("Micle","Canada",12500.0f));
-		String customerGroup = custImpl.registerGroupOfCustomers(customers);
+		String customerGroup = custService.registerGroupOfCustomers(customers);
 		System.out.println(customerGroup);
 		
-		boolean isAvailable = custImpl.isCustomerAvailable(new Integer(202));
+		boolean isAvailable = custService.isCustomerAvailable(new Integer(202));
 		if(isAvailable) {
 			System.out.println("Customer Available");
 		}else {
 			System.out.println("Customer not Available");
+		} 
+		long count =  custService.getAllCustomerCount();
+		System.out.println("Count of all customer : "+count);
+		
+		Iterable<Customer> it = custService.getAllCustomer();
+		it.forEach(cust1 ->{System.out.println(cust1);}); // forEach method
+		System.out.println("--------------------");     
+		it.forEach(System.out::println);  // static method reference
+		System.out.println("--------------------");     
+		for(Customer cu: it) {            // Enhanced for loop
+			System.out.println(cu);         
 		}
 	}
 

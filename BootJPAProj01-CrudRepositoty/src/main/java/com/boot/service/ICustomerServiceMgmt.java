@@ -11,5 +11,7 @@ public interface ICustomerServiceMgmt {
 	public String registerCustomer(Customer cust);
 	public String registerGroupOfCustomers(List<Customer> custList);
 	public boolean isCustomerAvailable(Integer id);
+	public long getAllCustomerCount();
+	public Iterable<Customer> getAllCustomer();
 
 }
