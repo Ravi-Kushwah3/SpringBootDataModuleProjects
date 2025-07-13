@@ -45,7 +45,16 @@ public class BootJpaProj01CrudRepositotyApplication {
 		System.out.println("--------------------");     
 		for(Customer cu: it) {            // Enhanced for loop
 			System.out.println(cu);         
-		}
+		} 
+		
+		String isAvailable1 = custService.getCustomerById(201);
+		System.out.println(isAvailable1);
+		
+		Customer isAvailable2 = custService.findById(101);
+		System.out.println(isAvailable2);
+		
+		Customer isAvailable3 = custService.fetchById(99);
+		System.out.println(isAvailable3);
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.boot.service;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +46,29 @@ public class CustomerServiceMgmtImpl implements ICustomerServiceMgmt {
 	public Iterable<Customer> getAllCustomer() {
 		Iterable<Customer> it = custRepo.findAll();
 		return it;
+	}
+
+	@Override
+	public String getCustomerById(int id) {
+		Optional<Customer> op = custRepo.findById(id);
+		if (op.isPresent()) {
+			return id + " customer details is available: " + op.get();
+		} else {
+			return id + " customer not found";
+		}
+	}
+
+	@Override
+	public Customer findById(int id) {
+
+		return custRepo.findById(id).orElse(new Customer()); // defaul customer details if not found
+	}
+
+	@Override
+	public Customer fetchById(int id) {
+
+		return custRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("customer not found.")); // throw
+																												// exception
 	}
 
 }

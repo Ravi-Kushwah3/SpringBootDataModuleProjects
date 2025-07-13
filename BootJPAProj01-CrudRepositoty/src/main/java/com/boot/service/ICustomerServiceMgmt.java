@@ -13,5 +13,8 @@ public interface ICustomerServiceMgmt {
 	public boolean isCustomerAvailable(Integer id);
 	public long getAllCustomerCount();
 	public Iterable<Customer> getAllCustomer();
+	public String getCustomerById(int id);
+	public Customer findById(int id);
+	public Customer fetchById(int id);
 
 }
