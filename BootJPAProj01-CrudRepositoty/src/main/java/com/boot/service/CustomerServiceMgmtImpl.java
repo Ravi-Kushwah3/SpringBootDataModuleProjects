@@ -83,4 +83,16 @@ public class CustomerServiceMgmtImpl implements ICustomerServiceMgmt {
 		}
 	}
 
+	@Override
+	public String deleteCustomer(Customer cust) {
+		Optional<Customer> opt = custRepo.findById(cust.getCno());
+		if (opt.isPresent()) {
+			custRepo.deleteById(cust.getCno());
+			return opt.get().getCno() + " id customer is deleted";
+		} else {
+			return opt.get().getCno() + " id customer is not found and not deleted";
+		}
+
+	}
+
 }

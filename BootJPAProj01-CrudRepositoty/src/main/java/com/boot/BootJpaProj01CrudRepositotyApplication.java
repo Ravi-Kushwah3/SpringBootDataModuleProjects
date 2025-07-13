@@ -57,7 +57,12 @@ public class BootJpaProj01CrudRepositotyApplication {
 		System.out.println(isAvailable3); 
 		
 		String updateOrRegister = custService.registerOrUpdateCustomer(new Customer(101,"Om","India",45000.f));
-		System.out.println(updateOrRegister);   // while this primary key not be auto generated.
+		System.out.println(updateOrRegister);   // while this primary key not be auto generated.  
+		
+	 	Customer custRemove = new Customer();
+	 	custRemove.setCno(101);
+		String removeCustomer = custService.deleteCustomer(custRemove);
+		System.out.println(removeCustomer);
 	}
 
 }
