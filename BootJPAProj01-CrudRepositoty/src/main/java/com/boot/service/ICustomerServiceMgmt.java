@@ -16,5 +16,6 @@ public interface ICustomerServiceMgmt {
 	public String getCustomerById(int id);
 	public Customer findById(int id);
 	public Customer fetchById(int id);
+	public String registerOrUpdateCustomer(Customer cust);
 
 }

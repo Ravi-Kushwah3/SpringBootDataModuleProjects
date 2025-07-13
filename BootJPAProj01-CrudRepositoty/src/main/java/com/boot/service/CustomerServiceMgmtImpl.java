@@ -71,4 +71,16 @@ public class CustomerServiceMgmtImpl implements ICustomerServiceMgmt {
 																												// exception
 	}
 
+	@Override
+	public String registerOrUpdateCustomer(Customer cust) {
+		Optional<Customer> opt = custRepo.findById(cust.getCno());
+		if(opt.isPresent()) {
+			Customer c =custRepo.save(cust);
+			return c.getCno()+" id customer is updated";
+		}else {
+			int idValue = custRepo.save(cust).getCno();
+			return idValue+" id customer is registerd";
+		}
+	}
+
 }

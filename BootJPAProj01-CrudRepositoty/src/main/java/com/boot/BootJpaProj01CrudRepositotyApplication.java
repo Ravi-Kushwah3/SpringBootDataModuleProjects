@@ -20,7 +20,7 @@ public class BootJpaProj01CrudRepositotyApplication {
 		cust.setCname("Jack");
 		cust.setCaddrs("UN");
 		cust.setBillAmt(75000.0f);
-		
+	
 		String result = custService.registerCustomer(cust);
 		System.out.println(result);
 		
@@ -54,7 +54,10 @@ public class BootJpaProj01CrudRepositotyApplication {
 		System.out.println(isAvailable2);
 		
 		Customer isAvailable3 = custService.fetchById(99);
-		System.out.println(isAvailable3);
+		System.out.println(isAvailable3); 
+		
+		String updateOrRegister = custService.registerOrUpdateCustomer(new Customer(101,"Om","India",45000.f));
+		System.out.println(updateOrRegister);   // while this primary key not be auto generated.
 	}
 
 }
